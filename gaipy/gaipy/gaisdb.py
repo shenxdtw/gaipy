@@ -42,11 +42,19 @@ def Show(db):
             return __return(False, r['error'])
 
         l = r['result']['create_arg'].split(' ')[2:]
-        d = {}
+        d = {
+            '-indexfield': [],
+            '-fieldindex': []
+        }
         f = '{type:<16}{column}'
         not_text = set()
-        for i in range(0,len(l),2):
-            d[l[i]] = l[i+1][1:-1].split(',')
+        key = None
+        for i in range(0,len(l)):
+            if (l[i] and l[i][0] == '-'):
+                key = l[i]
+            elif (key != None):
+                d[key] = l[i].replace('"', '').split(',')
+                key = None
 
         for k in d:
             if k != '-indexfield' and k != '-title' and k != '-fieldindex':
