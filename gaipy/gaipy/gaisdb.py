@@ -141,7 +141,7 @@ def Update(db, rid=0, new_record='', modify_all=False, record_format='text', get
             else :
                 return __return(False, 'rid not found')
 
-def Select(db, pattern={}, filter_args={}, mode='', page_cnt=10, page=1, order_by='', order='desc'):
+def Select(db, pattern={}, filter_args={}, mode='', page_cnt=10, page=1, order_by='', order='decreasing'):
     if page_cnt < 1 :
         return __return(False, 'page count must be more than 1')
     elif page < 1 :
@@ -163,8 +163,8 @@ def Select(db, pattern={}, filter_args={}, mode='', page_cnt=10, page=1, order_b
         if order_by != '' :
             cmd += '&orderby=%s' % order_by
 
-        if order == 'asc' :
-            cmd += '&order=%s' % order
+        if order == 'increasing' || order == 'asc':
+            cmd += '&order=increasing'
 
         if type(filter_args) == dict and len(filter_args) != 0 :
             cmd += '&filter=%s' % __build_query(db, filter_args)
@@ -176,7 +176,7 @@ def Select(db, pattern={}, filter_args={}, mode='', page_cnt=10, page=1, order_b
         else :
             return __return(False, gaisdb_res['error'])
 
-def Search(db, term_list='', filter_args={}, mode='', page_cnt=10, page=1, order_by='', order='desc'):
+def Search(db, term_list='', filter_args={}, mode='', page_cnt=10, page=1, order_by='', order='decreasing'):
     if page_cnt < 1 :
         return __return(False, 'page count must be more than 1')
     elif page < 1 :
@@ -195,8 +195,8 @@ def Search(db, term_list='', filter_args={}, mode='', page_cnt=10, page=1, order
         if order_by != '' :
             cmd += '&orderby=%s' % order_by
 
-        if order == 'asc' :
-            cmd += '&order=%s' % order
+        if order == 'increasing' || order == 'asc':
+            cmd += '&order=increasing'
 
         if type(filter_args) == dict and len(filter_args) != 0 :
             cmd += '&filter=%s' % __build_query(db, filter_args)
