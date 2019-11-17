@@ -161,7 +161,7 @@ def Select(db, pattern={}, filter_args={}, mode='', page_cnt=10, page=1, order_b
             cmd += '&matchmode=%s' % mode
 
         if order_by != '' :
-            cmd += '&order_by=%s' % order_by
+            cmd += '&orderby=%s' % order_by
 
         if order == 'asc' :
             cmd += '&order=%s' % order
@@ -193,7 +193,7 @@ def Search(db, term_list='', filter_args={}, mode='', page_cnt=10, page=1, order
             cmd += '&matchmode=%s' % mode
 
         if order_by != '' :
-            cmd += '&order_by=%s' % order_by
+            cmd += '&orderby=%s' % order_by
 
         if order == 'asc' :
             cmd += '&order=%s' % order
